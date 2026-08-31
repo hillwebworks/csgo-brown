@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/nimda", "destination": "/index.html" },
+    { "source": "/nimda/", "destination": "/index.html" }
+  ]
+}
