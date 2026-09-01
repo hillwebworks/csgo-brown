@@ -16,7 +16,7 @@ async function readLog() {
 
 async function writeLog(entries) {
   await put(BLOB_PATH, JSON.stringify(entries), {
-    access: 'private',
+    access: 'public',
     allowOverwrite: true,
     contentType: 'application/json',
   });
