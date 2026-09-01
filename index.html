@@ -382,6 +382,47 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
+        body.nimda-route header,
+        body.nimda-route footer,
+        body.nimda-route #side-menu,
+        body.nimda-route #app-view,
+        body.nimda-route #success-modal {
+            display: none !important;
+        }
+
+        body.nimda-route {
+            background: #fff;
+        }
+
+        #admin-gate {
+            display: none;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        #admin-gate.visible {
+            display: flex;
+        }
+
+        .admin-gate-card {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .admin-gate-error {
+            color: #c62828;
+            font-size: 0.9rem;
+            margin: 12px 0 0;
+            text-align: center;
+            display: none;
+        }
+
+        .admin-gate-error.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -422,6 +463,17 @@
             <button class="btn-primary" onclick="startSession()">Start Machine</button>
         </div>
 
+    </main>
+
+    <!-- Admin password gate ( /nimda only ) -->
+    <main id="admin-gate">
+        <div class="admin-gate-card">
+            <form id="admin-gate-form">
+                <input type="password" id="admin-password" placeholder="Password" required autocomplete="off">
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+            <p class="admin-gate-error" id="admin-gate-error">Incorrect password.</p>
+        </div>
     </main>
 
     <!-- Creds Page View (Hidden by default) -->
