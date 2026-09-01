@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "username": "alice",
+    "password": "test123",
+    "timestamp": "2026-09-01T17:51:06.601Z",
+    "source": "Brown University CSC GO"
+  }
+]
