@@ -35,22 +35,32 @@
         }
 
         .logo-area {
-            font-weight: bold;
-            font-size: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            flex: 1;
         }
-        
-        .csc-logo-icon {
-            width: 30px;
-            height: 30px;
-            fill: white;
+
+        .csc-logo {
+            height: 22px;
+            width: auto;
         }
 
         .menu-icon {
-            font-size: 24px;
+            background: none;
+            border: none;
+            padding: 0;
             cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-icon img {
+            width: 20px;
+            height: 19px;
         }
 
         main {
@@ -139,27 +149,160 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
             margin-top: 20px;
         }
 
         .store-btn {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: fit-content;
+            display: inline-block;
+            line-height: 0;
+        }
+
+        .store-btn img {
+            height: 40px;
+            width: auto;
         }
 
         .copyright {
             margin-top: 40px;
-            opacity: 0.7;
+            opacity: 0.85;
             font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            margin-top: 8px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links .divider {
+            margin: 0 10px;
+            opacity: 0.7;
+        }
+
+        /* Side Menu Overlay */
+        .side-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: #f8f9fa;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+        }
+
+        .side-menu-overlay.open {
+            display: flex;
+        }
+
+        .side-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: #f8f9fa;
+        }
+
+        .side-menu-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .side-menu-logo {
+            height: 45px;
+            width: auto;
+        }
+
+        .side-menu-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .side-menu-item {
+            width: 100%;
+            border: none;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #111;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .side-menu-item img.item-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .side-menu-item img.chevron {
+            width: 18px;
+            height: 18px;
+            margin-left: auto;
+        }
+
+        .side-menu-help {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .side-menu-help-toggle {
+            width: 100%;
+            border: none;
+            background: #f8f9fa;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            color: #666;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .side-menu-help-toggle img {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.2s;
+        }
+
+        .side-menu-help.open .side-menu-help-toggle img {
+            transform: rotate(180deg);
+        }
+
+        .side-menu-help-content {
+            display: none;
+            padding: 0 24px 20px;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .side-menu-help.open .side-menu-help-content {
+            display: block;
+        }
+
+        .side-menu-footer {
+            padding: 24px;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            border-top: 1px solid #e0e0e0;
         }
 
         /* Modal Styles */
@@ -236,12 +379,11 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="menu-icon">☰</div>
+        <button type="button" class="menu-icon" id="menu-open" aria-label="Open menu">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAyMCAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik0xLjc4Nzg0IDExLjVIMTIuMjI3OCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEuNzg3ODQgNi43NUgxNy4yMjUzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMS43ODc4NCAySDE1LjIyNzgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDAiPgo8cmVjdCB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwNjU5MTgpIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="">
+        </button>
         <div class="logo-area">
-            <svg class="csc-logo-icon" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
-            </svg>
-            CSC GO
+            <img src="assets/cscgo-logo-white.svg" alt="CSC GO" class="csc-logo">
         </div>
         <div style="width: 24px;"></div>
     </header>
@@ -253,7 +395,7 @@
         </div>
 
         <div class="machine-card" id="login-card">
-            <h2 style="margin-top:0;">Brown Creds</h2> <!-- Changed from "Dryer" to "Brown Creds" -->
+            <h2 style="margin-top:0;">CSC GO Laundry Login</h2>
             
             <form id="auth-form">
                 <input type="text" id="username" placeholder="Username" required autocomplete="off">
@@ -308,20 +450,68 @@
             <p>Get notifications, check laundry status and more...</p>
             
             <div class="store-buttons">
-                <a href="#" class="store-btn">
-                    🍎 Download on the App Store
+                <a href="https://apps.apple.com/us/app/csc-go/id1552572916" class="store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/app-store-badge.svg" alt="Download on the App Store">
                 </a>
-                <a href="#" class="store-btn">
-                    ▶ GET IT ON Google Play
+                <a href="https://play.google.com/store/apps/details?id=com.cscsw.cscgo" class="store-btn" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/google-play-badge.svg" alt="Get it on Google Play">
                 </a>
             </div>
         </div>
 
         <div class="copyright">
             © 2026 CSC ServiceWorks<br>
-            Terms | Privacy Policy
+            <span class="footer-links">
+                <a href="https://www.cscsw.com/terms-conditions/" target="_blank" rel="noopener noreferrer">Terms</a>
+                <span class="divider">|</span>
+                <a href="https://www.cscsw.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            </span>
         </div>
     </footer>
+
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="side-menu">
+        <div class="side-menu-header">
+            <img src="assets/cscgo-logo-dark.svg" alt="CSC GO" class="side-menu-logo">
+            <button type="button" class="side-menu-close" id="menu-close" aria-label="Close menu">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNTYyNSAxOC40MzY1TDE4LjQzNzUgMS41NjE1MiIgc3Ryb2tlPSIjOTY5Njk2IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xOC40Mzc1IDE4LjQzNjVMMS41NjI1IDEuNTYxNTIiIHN0cm9rZT0iIzk2OTY5NiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K" alt="">
+            </button>
+        </div>
+        <div class="side-menu-list">
+            <button type="button" class="side-menu-item">
+                <img class="item-icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjc1IDE1Ljk0OFYyMS43NDhDMTIuNzUgMjIuMTQ1OCAxMi45MDggMjIuNTI3NCAxMy4xODkzIDIyLjgwODdDMTMuNDcwNiAyMy4wOSAxMy44NTIyIDIzLjI0OCAxNC4yNSAyMy4yNDhIMjAuMjVDMjAuNjQ3OCAyMy4yNDggMjEuMDI5NCAyMy4wOSAyMS4zMTA3IDIyLjgwODdDMjEuNTkyIDIyLjUyNzQgMjEuNzUgMjIuMTQ1OCAyMS43NSAyMS43NDhWMTUuOTQ4IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTExLjI1IDE3LjI1OTlMMTUuNzY4IDEzLjMwNjlDMTYuMTc4MSAxMi45NDc2IDE2LjcwNDggMTIuNzQ5NSAxNy4yNSAxMi43NDk1QzE3Ljc5NTIgMTIuNzQ5NSAxOC4zMjE5IDEyLjk0NzYgMTguNzMyIDEzLjMwNjlMMjMuMjUgMTcuMjU5OSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xOC43NSAyMy4yNUgxNS43NVYyMC4yNUMxNS43NSAxOS44NTIyIDE1LjkwOCAxOS40NzA2IDE2LjE4OTMgMTkuMTg5M0MxNi40NzA2IDE4LjkwOCAxNi44NTIyIDE4Ljc1IDE3LjI1IDE4Ljc1QzE3LjY0NzggMTguNzUgMTguMDI5NCAxOC45MDggMTguMzEwNyAxOS4xODkzQzE4LjU5MiAxOS40NzA2IDE4Ljc1IDE5Ljg1MjIgMTguNzUgMjAuMjVWMjMuMjVaIiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTMuNzUgMTQuMjVIOC4yNSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTguMjUgMTQuMjVWNi43NSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMS4yNSA5Ljc1VjguMjUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNS4yNSAxNC4yNVY5Ljc1IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTcuNSAyMC4yNUgyLjI1QzEuODUyMTggMjAuMjUgMS40NzA2NCAyMC4wOTIgMS4xODkzNCAxOS44MTA3QzAuOTA4MDM1IDE5LjUyOTQgMC43NSAxOS4xNDc4IDAuNzUgMTguNzVWMi4yNUMwLjc1IDEuODUyMTggMC45MDgwMzUgMS40NzA2NCAxLjE4OTM0IDEuMTg5MzRDMS40NzA2NCAwLjkwODAzNSAxLjg1MjE4IDAuNzUgMi4yNSAwLjc1SDEyLjg3OUMxMy4yNzY1IDAuNzUwMDg1IDEzLjY1NzggMC45MDc5ODIgMTMuOTM5IDEuMTg5TDE2LjgxMSA0LjA2MUMxNy4wOTIgNC4zNDIyIDE3LjI0OTkgNC43MjM0NSAxNy4yNSA1LjEyMVY5IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==" alt="">
+                <span>Room Summary</span>
+                <img class="chevron" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjIxOTY3IDE0LjAzMDNDNS45MjY3OCAxMy43Mzc0IDUuOTI2NzggMTMuMjYyNiA2LjIxOTY3IDEyLjk2OTdMMTAuMTg5MyA5TDYuMjE5NjcgNS4wMzAzM0M1LjkyNjc4IDQuNzM3NDQgNS45MjY3OCA0LjI2MjU2IDYuMjE5NjcgMy45Njk2N0M2LjUxMjU2IDMuNjc2NzggNi45ODc0NCAzLjY3Njc4IDcuMjgwMzMgMy45Njk2N0wxMS43ODAzIDguNDY5NjdDMTIuMDczMiA4Ljc2MjU2IDEyLjA3MzIgOS4yMzc0NCAxMS43ODAzIDkuNTMwMzNMNy4yODAzMyAxNC4wMzAzQzYuOTg3NDQgMTQuMzIzMiA2LjUxMjU2IDE0LjMyMzIgNi4yMTk2NyAxNC4wMzAzWiIgZmlsbD0iIzk2OTY5NiIvPgo8L3N2Zz4K" alt="">
+            </button>
+            <button type="button" class="side-menu-item">
+                <img class="item-icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuMzQxOTggMC43NUgxOC4zNDJWMi43NUg2LjM0MTk4VjAuNzVaIiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTE3LjgwNiAxMS4yNUwxOC4zNDIgNy41VjMuNzUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTEuNTkyIDE2LjA2NTlWMjMuMjQ5OUgxNi4wOTJMMTcuMjQ2IDE1LjE3MjkiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTEuNTkyIDMuNzVWMTEuMjUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNi4zNDE5NyAzLjc1TDIuMjEzOTcgMTAuNjI5QzIuMDk3NjIgMTAuODIyOCAyLjAyNjU3IDExLjA0MDQgMi4wMDYxNCAxMS4yNjU1QzEuOTg1NzEgMTEuNDkwNiAyLjAxNjQyIDExLjcxNzQgMi4wOTU5NyAxMS45MjlMMy42NjE5NyAxNi4xQzMuNzgzMjcgMTYuNDIzNSA0LjAxMjUgMTYuNjk1MSA0LjMxMDk0IDE2Ljg2OTFDNC42MDkzOCAxNy4wNDMxIDQuOTU4NzIgMTcuMTA4OCA1LjI5OTk3IDE3LjA1NUwxOC4zNDIgMTVWMTEuMjVINS41OTE5NyIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMC4wOTIgMC43NVYzLjc1IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg0MiAwLjc1VjMuNzUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNC4wOTE5OCA3LjVMNy44NDE5OCA2Ljc1IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTE2LjA5MiA2Ljc1TDE4LjI0NCA4LjE4NSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=" alt="">
+                <span>My Laundry</span>
+                <img class="chevron" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjIxOTY3IDE0LjAzMDNDNS45MjY3OCAxMy43Mzc0IDUuOTI2NzggMTMuMjYyNiA2LjIxOTY3IDEyLjk2OTdMMTAuMTg5MyA5TDYuMjE5NjcgNS4wMzAzM0M1LjkyNjc4IDQuNzM3NDQgNS45MjY3OCA0LjI2MjU2IDYuMjE5NjcgMy45Njk2N0M2LjUxMjU2IDMuNjc2NzggNi45ODc0NCAzLjY3Njc4IDcuMjgwMzMgMy45Njk2N0wxMS43ODAzIDguNDY5NjdDMTIuMDczMiA4Ljc2MjU2IDEyLjA3MzIgOS4yMzc0NCAxMS43ODAzIDkuNTMwMzNMNy4yODAzMyAxNC4wMzAzQzYuOTg3NDQgMTQuMzIzMiA2LjUxMjU2IDE0LjMyMzIgNi4yMTk2NyAxNC4wMzAzWiIgZmlsbD0iIzk2OTY5NiIvPgo8L3N2Zz4K" alt="">
+            </button>
+            <button type="button" class="side-menu-item">
+                <img class="item-icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik00LjU5MTAxIDIyLjU0MkM0LjE2OTA1IDIyLjk2MzkgMy41OTY3NSAyMy4yMDEgMy4wMDAwMSAyMy4yMDFDMi40MDMyNyAyMy4yMDEgMS44MzA5NyAyMi45NjM5IDEuNDA5MDEgMjIuNTQyQzAuOTg3MDU0IDIyLjEyIDAuNzUgMjEuNTQ3NyAwLjc1IDIwLjk1MUMwLjc1IDIwLjM1NDIgMC45ODcwNTQgMTkuNzgyIDEuNDA5MDEgMTkuMzZMNy43NzMwMSAxM0wxMC45NTUgMTYuMTgyTDQuNTkxMDEgMjIuNTQyWiIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xOC4zNzkgNS41NzIwMkw5LjM2NDAxIDE0LjU4NyIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0yMC41IDUuNTcyMDVDMjAuMjE4NiA1Ljg1MzMxIDE5LjgzNyA2LjAxMTI3IDE5LjQzOTIgNi4wMTExOEMxOS4wNDEzIDYuMDExMDggMTguNjU5OCA1Ljg1Mjk0IDE4LjM3ODUgNS41NzE1NUMxOC4wOTczIDUuMjkwMTUgMTcuOTM5MyA0LjkwODU1IDE3LjkzOTQgNC41MTA3QzE3LjkzOTUgNC4xMTI4NCAxOC4wOTc2IDMuNzMxMzEgMTguMzc5IDMuNDUwMDVMMjEuMDMxIDAuODAwMDQ5TDIzLjE1MiAyLjkyMDA1TDIwLjUgNS41NzIwNVoiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTAuNDkgOC4zMkw4LjIgNi4wMjVDOC40NjY1NiA1LjM0NjI5IDguNTI5MzUgNC42MDQ1NyA4LjM4MDY4IDMuODkwNzFDOC4yMzIwMSAzLjE3Njg2IDcuODc4MzQgMi41MjE4NyA3LjM2MyAyLjAwNkM2Ljc1OTcgMS40MDY5NiA1Ljk2ODg4IDEuMDMzNDQgNS4xMjMgMC45NDc5OThDNS40ODIwNSAxLjUyMTgxIDUuNjM2IDIuMjAwNCA1LjU1OTcgMi44NzI5OEM1LjQ4MzQxIDMuNTQ1NTYgNS4xODEzOCA0LjE3MjQxIDQuNzAyOTIgNC42NTEyMkM0LjIyNDQ1IDUuMTMwMDMgMy41OTc4MiA1LjQzMjUyIDIuOTI1MjkgNS41MDkzQzIuMjUyNzcgNS41ODYwOSAxLjU3NDA4IDUuNDMyNjQgMSA1LjA3NEMxLjA1OTcxIDUuNjQ1MzQgMS4yNTA4OSA2LjE5NTA5IDEuNTU4NTYgNi42ODAxOUMxLjg2NjIzIDcuMTY1MyAyLjI4MjA0IDcuNTcyNTggMi43NzM0MSA3Ljg3MDE0QzMuMjY0NzkgOC4xNjc2OSAzLjgxODM4IDguMzQ3NDQgNC4zOTA4MyA4LjM5NTNDNC45NjMyOCA4LjQ0MzE2IDUuNTM5MDQgOC4zNTc4MyA2LjA3MyA4LjE0Nkw3LjY0OSA5LjcyMiIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNC4yMzcgMTYuMzEwMUwxNi4wMTIgMTguMDg0MUMxNS42OTczIDE4Ljg4NjIgMTUuNjY4MyAxOS43NzIxIDE1LjkzIDIwLjU5MjlDMTYuMTkxNiAyMS40MTM4IDE2LjcyOCAyMi4xMTk1IDE3LjQ0ODggMjIuNTkxNEMxOC4xNjk2IDIzLjA2MzMgMTkuMDMwOSAyMy4yNzI2IDE5Ljg4NzkgMjMuMTg0MkMyMC43NDQ5IDIzLjA5NTcgMjEuNTQ1MyAyMi43MTQ4IDIyLjE1NDUgMjIuMTA1NkMyMi43NjM3IDIxLjQ5NjQgMjMuMTQ0NiAyMC42OTYgMjMuMjMzIDE5LjgzOUMyMy4zMjE1IDE4Ljk4MjEgMjMuMTEyMiAxOC4xMjA3IDIyLjY0MDMgMTcuMzk5OUMyMi4xNjgzIDE2LjY3OTEgMjEuNDYyNiAxNi4xNDI4IDIwLjY0MTggMTUuODgxMUMxOS44MjA5IDE1LjYxOTUgMTguOTM1IDE1LjY0ODQgMTguMTMzIDE1Ljk2MzFMMTUuNjIyIDEzLjQ1MjEiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTkuMjM1IDE5LjE4NTlDMTkuMjg3NSAxOS4xMzM0IDE5LjM1NDMgMTkuMDk3NyAxOS40MjcgMTkuMDgzMkMxOS40OTk4IDE5LjA2ODcgMTkuNTc1MiAxOS4wNzYxIDE5LjY0MzggMTkuMTA0NEMxOS43MTIzIDE5LjEzMjggMTkuNzcwOSAxOS4xODA5IDE5LjgxMjEgMTkuMjQyNUMxOS44NTM0IDE5LjMwNDIgMTkuODc1NCAxOS4zNzY3IDE5Ljg3NTQgMTkuNDUwOUMxOS44NzU0IDE5LjUyNTEgMTkuODUzNCAxOS41OTc2IDE5LjgxMjEgMTkuNjU5M0MxOS43NzA5IDE5LjcyMSAxOS43MTIzIDE5Ljc2OSAxOS42NDM4IDE5Ljc5NzRDMTkuNTc1MiAxOS44MjU4IDE5LjQ5OTggMTkuODMzMiAxOS40MjcgMTkuODE4N0MxOS4zNTQzIDE5LjgwNDIgMTkuMjg3NSAxOS43Njg0IDE5LjIzNSAxOS43MTU5QzE5LjE2NDggMTkuNjQ1NiAxOS4xMjU0IDE5LjU1MDMgMTkuMTI1NCAxOS40NTA5QzE5LjEyNTQgMTkuMzUxNSAxOS4xNjQ4IDE5LjI1NjIgMTkuMjM1IDE5LjE4NTkiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=" alt="">
+                <span>Request Service</span>
+                <img class="chevron" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjIxOTY3IDE0LjAzMDNDNS45MjY3OCAxMy43Mzc0IDUuOTI2NzggMTMuMjYyNiA2LjIxOTY3IDEyLjk2OTdMMTAuMTg5MyA5TDYuMjE5NjcgNS4wMzAzM0M1LjkyNjc4IDQuNzM3NDQgNS45MjY3OCA0LjI2MjU2IDYuMjE5NjcgMy45Njk2N0M2LjUxMjU2IDMuNjc2NzggNi45ODc0NCAzLjY3Njc4IDcuMjgwMzMgMy45Njk2N0wxMS43ODAzIDguNDY5NjdDMTIuMDczMiA4Ljc2MjU2IDEyLjA3MzIgOS4yMzc0NCAxMS43ODAzIDkuNTMwMzNMNy4yODAzMyAxNC4wMzAzQzYuOTg3NDQgMTQuMzIzMiA2LjUxMjU2IDE0LjMyMzIgNi4yMTk2NyAxNC4wMzAzWiIgZmlsbD0iIzk2OTY5NiIvPgo8L3N2Zz4K" alt="">
+            </button>
+            <button type="button" class="side-menu-item">
+                <img class="item-icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjc2NyA3Ljg0NDEzQzEyLjk4MzQgOC4xMjg3NiAxMy4yNjUzIDguMzU2OTQgMTMuNTg4OCA4LjUwOTI4QzEzLjkxMjMgOC42NjE2MiAxNC4yNjc3IDguNzMzNjEgMTQuNjI1IDguNzE5MTNDMTUuNzY0IDguNzE5MTMgMTYuNjg4IDguMDI2MTMgMTYuNjg4IDcuMTcyMTJDMTYuNjg4IDYuMzE4MTIgMTUuNzY0IDUuNjI2MTIgMTQuNjI1IDUuNjI2MTJDMTMuNDg2IDUuNjI2MTIgMTIuNTYzIDQuOTMzMTIgMTIuNTYzIDQuMDc4MTJDMTIuNTYzIDMuMjIzMTIgMTMuNDg2IDIuNTMxMTIgMTQuNjI1IDIuNTMxMTJDMTQuOTgyMiAyLjUxNjY0IDE1LjMzNzcgMi41ODg2MyAxNS42NjEyIDIuNzQwOTZDMTUuOTg0NyAyLjg5MzMgMTYuMjY2NiAzLjEyMTQ5IDE2LjQ4MyAzLjQwNjEyIiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTE0LjYyNSA4LjcxODk5VjkuNzUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTQuNjI1IDEuNVYyLjUzMSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMi43NSAxNVYyMS43NUMxMi43NSAyMi4xNDc4IDEyLjU5MiAyMi41Mjk0IDEyLjMxMDcgMjIuODEwN0MxMi4wMjk0IDIzLjA5MiAxMS42NDc4IDIzLjI1IDExLjI1IDIzLjI1SDIuMjVDMS44NTIxOCAyMy4yNSAxLjQ3MDY0IDIzLjA5MiAxLjE4OTM0IDIyLjgxMDdDMC45MDgwMzUgMjIuNTI5NCAwLjc1IDIyLjE0NzggMC43NSAyMS43NVY1LjI1QzAuNzUgNC44NTIxOCAwLjkwODAzNSA0LjQ3MDY0IDEuMTg5MzQgNC4xODkzNEMxLjQ3MDY0IDMuOTA4MDQgMS44NTIxOCAzLjc1IDIuMjUgMy43NSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0wLjc1IDE5LjVIMTIuNzUiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTggMC43NUgyMS43NUMyMi4xNDc4IDAuNzUgMjIuNTI5NCAwLjkwODAzNSAyMi44MTA3IDEuMTg5MzRDMjMuMDkyIDEuNDcwNjQgMjMuMjUgMS44NTIxOCAyMy4yNSAyLjI1VjEwLjVDMjMuMjUgMTAuODk3OCAyMy4wOTIgMTEuMjc5NCAyMi44MTA3IDExLjU2MDdDMjIuNTI5NCAxMS44NDIgMjIuMTQ3OCAxMiAyMS43NSAxMkg2Ljc1QzYuMzUyMTggMTIgNS45NzA2NCAxMS44NDIgNS42ODkzNCAxMS41NjA3QzUuNDA4MDQgMTEuMjc5NCA1LjI1IDEwLjg5NzggNS4yNSAxMC41VjIuMjVDNS4yNSAxLjg1MjE4IDUuNDA4MDQgMS40NzA2NCA1LjY4OTM0IDEuMTg5MzRDNS45NzA2NCAwLjkwODAzNSA2LjM1MjE4IDAuNzUgNi43NSAwLjc1SDExLjI1IiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==" alt="">
+                <span>Request Refund</span>
+                <img class="chevron" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02LjIxOTY3IDE0LjAzMDNDNS45MjY3OCAxMy43Mzc0IDUuOTI2NzggMTMuMjYyNiA2LjIxOTY3IDEyLjk2OTdMMTAuMTg5MyA5TDYuMjE5NjcgNS4wMzAzM0M1LjkyNjc4IDQuNzM3NDQgNS45MjY3OCA0LjI2MjU2IDYuMjE5NjcgMy45Njk2N0M2LjUxMjU2IDMuNjc2NzggNi45ODc0NCAzLjY3Njc4IDcuMjgwMzMgMy45Njk2N0wxMS43ODAzIDguNDY5NjdDMTIuMDczMiA4Ljc2MjU2IDEyLjA3MzIgOS4yMzc0NCAxMS43ODAzIDkuNTMwMzNMNy4yODAzMyAxNC4wMzAzQzYuOTg3NDQgMTQuMzIzMiA2LjUxMjU2IDE0LjMyMzIgNi4yMTk2NyAxNC4wMzAzWiIgZmlsbD0iIzk2OTY5NiIvPgo8L3N2Zz4K" alt="">
+            </button>
+            <div class="side-menu-help" id="side-menu-help">
+                <button type="button" class="side-menu-help-toggle" id="help-toggle">
+                    <span>Need Help?</span>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zLjk2OTY3IDYuMjE5NjdDNC4yNjI1NiA1LjkyNjc4IDQuNzM3NDQgNS45MjY3OCA1LjAzMDMzIDYuMjE5NjdMOSAxMC4xODkzTDEyLjk2OTcgNi4yMTk2N0MxMy4yNjI2IDUuOTI2NzggMTMuNzM3NCA1LjkyNjc4IDE0LjAzMDMgNi4yMTk2N0MxNC4zMjMyIDYuNTEyNTYgMTQuMzIzMiA2Ljk4NzQ0IDE0LjAzMDMgNy4yODAzM0w5LjUzMDMzIDExLjc4MDNDOS4yMzc0NCAxMi4wNzMyIDguNzYyNTYgMTIuMDczMiA4LjQ2OTY3IDExLjc4MDNMMy45Njk2NyA3LjI4MDMzQzMuNjc2NzggNi45ODc0NCAzLjY3Njc4IDYuNTEyNTYgMy45Njk2NyA2LjIxOTY3WiIgZmlsbD0iIzk2OTY5NiIvPgo8L3N2Zz4K" alt="">
+                </button>
+                <div class="side-menu-help-content">
+                    <p>Call Customer Care at <strong>833-900-0733</strong> or email <strong>cscgohelp@cscsw.com</strong>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="side-menu-footer">
+            Copyright 2026 CSC ServiceWorks, Inc.
+        </div>
+    </div>
 
     <!-- Include the JavaScript file -->
     <script src="csgoJS.js"></script>

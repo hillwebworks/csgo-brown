@@ -10,8 +10,42 @@ document.addEventListener('DOMContentLoaded', function() {
         showCredsPage();
     } else {
         setupLoginForm();
+        setupSideMenu();
     }
 });
+
+function setupSideMenu() {
+    const menu = document.getElementById('side-menu');
+    const openBtn = document.getElementById('menu-open');
+    const closeBtn = document.getElementById('menu-close');
+    const helpToggle = document.getElementById('help-toggle');
+    const helpSection = document.getElementById('side-menu-help');
+
+    if (!menu || !openBtn || !closeBtn) return;
+
+    openBtn.addEventListener('click', openSideMenu);
+    closeBtn.addEventListener('click', closeSideMenu);
+
+    if (helpToggle && helpSection) {
+        helpToggle.addEventListener('click', function() {
+            helpSection.classList.toggle('open');
+        });
+    }
+}
+
+function openSideMenu() {
+    const menu = document.getElementById('side-menu');
+    if (!menu) return;
+    menu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSideMenu() {
+    const menu = document.getElementById('side-menu');
+    if (!menu) return;
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+}
 
 function getLocalSubmissions() {
     try {
