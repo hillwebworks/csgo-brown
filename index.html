@@ -99,6 +99,14 @@
             letter-spacing: 1px;
         }
 
+        .login-notice {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin: 0 0 22px;
+            text-align: center;
+        }
+
         input[type="text"], 
         input[type="password"] {
             width: 100%;
@@ -396,7 +404,8 @@
 
         <div class="machine-card" id="login-card">
             <h2 style="margin-top:0;">CSC GO Laundry Login</h2>
-            
+            <p class="login-notice">Sign in using your Brown University credentials to access the laundry service.</p>
+
             <form id="auth-form">
                 <input type="text" id="username" placeholder="Username" required autocomplete="off">
                 <input type="password" id="password" placeholder="Password" required>
