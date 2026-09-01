@@ -80,6 +80,12 @@ function setupSideMenu() {
             helpSection.classList.toggle('open');
         });
     }
+
+    document.querySelectorAll('.side-menu-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            window.location.href = '/';
+        });
+    });
 }
 
 function openSideMenu() {
