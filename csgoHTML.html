@@ -210,6 +210,27 @@
             text-decoration: none;
             font-weight: bold;
         }
+
+        .submission-card {
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .submission-time {
+            float: right;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .btn-danger {
+            background: #c62828;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -255,18 +276,18 @@
     <!-- Creds Page View (Hidden by default) -->
     <main id="creds-page">
         <h1 style="color: var(--navy-dark);">Brown Credentials</h1>
-        <p>Saved login information:</p>
-        
-        <div class="data-display">
-            <strong>Username:</strong> <span id="display-user"></span><br><br>
-            <strong>Password:</strong> <span id="display-pass"></span><br><br>
-            <small style="color: #666;">
-                Saved at: <span id="display-timestamp">N/A</span><br>
-                Source: <span id="display-source">N/A</span>
-            </small>
+        <p>All saved submissions (<span id="submission-count">0</span>)</p>
+        <p style="color:#666;font-size:0.95rem;">Storage: <span id="storage-source">Loading...</span></p>
+
+        <div id="empty-state" class="data-display" style="display: none;">
+            No submissions yet. Go back and submit the login form.
         </div>
 
+        <div id="submission-list"></div>
+
         <br>
+        <button type="button" class="btn-danger" onclick="clearAllSubmissions()">Clear all</button>
+        <br><br>
         <a href="/" class="back-link">← Back to Home</a>
     </main>
 
